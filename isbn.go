@@ -2,20 +2,20 @@ package openlibrary
 
 import "path"
 
-type isbnAPI struct {
-	openlibraryClient *client
+type ISBNAPI struct {
+	openlibraryClient *Client
 	isbn              string
 }
 
-func (c *client) ISBN(isbn string) *isbnAPI {
-	api := isbnAPI{
+func (c *Client) ISBN(isbn string) *ISBNAPI {
+	api := ISBNAPI{
 		openlibraryClient: c,
 		isbn:              isbn,
 	}
 	return &api
 }
 
-func (api *isbnAPI) Get() (resp *Edition, err error) {
+func (api *ISBNAPI) Get() (resp *Edition, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).

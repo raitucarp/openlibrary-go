@@ -6,24 +6,24 @@ const baseURL = "https://openlibrary.org"
 const coverBaseURL = "https://covers.openlibrary.org/b"
 const userAgent = "openlibrary-go/1.0 (Golang OpenLibrary Client)"
 
-type client struct {
+type Client struct {
 	httpClient *resty.Client
 	userAgent  string
 }
 
-func NewClient() *client {
+func NewClient() *Client {
 	httpClient := resty.New()
 	httpClient.SetBaseURL(baseURL)
 	httpClient.SetHeader("User-Agent", userAgent)
 
-	c := client{httpClient: httpClient}
+	c := Client{httpClient: httpClient}
 	return &c
 }
 
-func (c *client) SetUserAgent(useragent string) {
+func (c *Client) SetUserAgent(useragent string) {
 	c.httpClient.SetHeader("User-Agent", userAgent)
 }
 
-func (c *client) changeBaseUrl(baseUrl string) {
+func (c *Client) changeBaseUrl(baseUrl string) {
 	c.httpClient.SetBaseURL(baseUrl)
 }

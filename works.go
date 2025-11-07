@@ -5,8 +5,8 @@ import (
 	"path"
 )
 
-type workAPI struct {
-	openlibraryClient *client
+type WorksAPI struct {
+	openlibraryClient *Client
 	key               string
 }
 
@@ -100,15 +100,15 @@ type LanguageCode string
 type LcClassification string
 type PublishCountry string
 
-func (c *client) Works(key string) *workAPI {
-	api := workAPI{
+func (c *Client) Works(key string) *WorksAPI {
+	api := WorksAPI{
 		openlibraryClient: c,
 		key:               key,
 	}
 	return &api
 }
 
-func (api *workAPI) Get() (resp *WorkResponse, err error) {
+func (api *WorksAPI) Get() (resp *WorkResponse, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).
@@ -136,7 +136,7 @@ type Rating struct {
 	} `json:"counts"`
 }
 
-func (api *workAPI) Ratings() (resp *Rating, err error) {
+func (api *WorksAPI) Ratings() (resp *Rating, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).
@@ -156,7 +156,7 @@ type Bookshelve struct {
 	} `json:"counts"`
 }
 
-func (api *workAPI) Bookshelves() (resp *Bookshelve, err error) {
+func (api *WorksAPI) Bookshelves() (resp *Bookshelve, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).

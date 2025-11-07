@@ -76,7 +76,7 @@ type EditionsResponse struct {
 	Entries []Edition `json:"entries"`
 }
 
-func (api *workAPI) Editions() (resp *EditionsResponse, err error) {
+func (api *WorksAPI) Editions() (resp *EditionsResponse, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).
@@ -88,20 +88,20 @@ func (api *workAPI) Editions() (resp *EditionsResponse, err error) {
 	return
 }
 
-type editionAPI struct {
-	openlibraryClient *client
+type EditionAPI struct {
+	openlibraryClient *Client
 	key               string
 }
 
-func (c *client) Edition(key string) *editionAPI {
-	api := editionAPI{
+func (c *Client) Edition(key string) *EditionAPI {
+	api := EditionAPI{
 		openlibraryClient: c,
 		key:               key,
 	}
 	return &api
 }
 
-func (api *editionAPI) Get() (resp *Edition, err error) {
+func (api *EditionAPI) Get() (resp *Edition, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).

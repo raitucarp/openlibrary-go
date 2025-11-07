@@ -74,8 +74,8 @@ func (a EbookAccess) String() string {
 	return string(a)
 }
 
-type searchAPI struct {
-	openlibraryClient *client
+type SearchAPI struct {
+	openlibraryClient *Client
 	fields            []SearchField
 	queryKey          string
 }
@@ -143,39 +143,39 @@ type SearchResponse struct {
 	Offset        int            `json:"offset,omitempty"`
 	Docs          []SearchResult `json:"docs,omitempty"`
 
-	openlibraryClient *client
+	openlibraryClient *Client
 }
 
-func (sr *SearchResponse) ToClient() *client {
+func (sr *SearchResponse) ToClient() *Client {
 	return sr.openlibraryClient
 }
 
-func (c *client) Search() *searchAPI {
-	s := searchAPI{
+func (c *Client) Search() *SearchAPI {
+	s := SearchAPI{
 		openlibraryClient: c,
 	}
 	return &s
 }
 
-func (api *searchAPI) Query(q string) *searchAPI {
+func (api *SearchAPI) Query(q string) *SearchAPI {
 	api.queryKey = q
 	return api
 }
 
-func (api *searchAPI) Fields(fields ...SearchField) *searchAPI {
+func (api *SearchAPI) Fields(fields ...SearchField) *SearchAPI {
 	api.fields = append(api.fields, fields...)
 	return api
 }
 
-func (api *searchAPI) Author(author string) *searchAPI {
+func (api *SearchAPI) Author(author string) *SearchAPI {
 	return api
 }
 
-func (api *searchAPI) Authors(author string) *searchAPI {
+func (api *SearchAPI) Authors(author string) *SearchAPI {
 	return api
 }
 
-func (api *searchAPI) Do() (resp *SearchResponse, err error) {
+func (api *SearchAPI) Do() (resp *SearchResponse, err error) {
 	fieldsCandidate := []string{}
 	for _, field := range api.fields {
 		fieldsCandidate = append(fieldsCandidate, string(field))
