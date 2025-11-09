@@ -3,7 +3,7 @@ package openlibrary
 import "resty.dev/v3"
 
 const baseURL = "https://openlibrary.org"
-const coverBaseURL = "https://covers.openlibrary.org/b"
+const coverBaseURL = "https://covers.openlibrary.org"
 const userAgent = "openlibrary-go/1.0 (Golang OpenLibrary Client)"
 
 type Client struct {

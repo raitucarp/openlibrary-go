@@ -1,6 +1,7 @@
 package openlibrary
 
 import (
+	"errors"
 	"net/http"
 	"path"
 )
@@ -33,59 +34,64 @@ type CoverAPI struct {
 func (c *Client) Cover() *CoverAPI {
 	api := &CoverAPI{
 		openlibraryClient: c,
+		kind:              ISBNCover,
+		size:              CoverMedium,
 	}
 	api.openlibraryClient.changeBaseUrl(coverBaseURL)
 	return api
 }
 
-func (c *CoverAPI) ISBN(isbn string) *CoverAPI {
-	c.kind = ISBNCover
-	c.value = isbn
-	return c
+func (api *CoverAPI) ISBN(isbn string) *CoverAPI {
+	api.kind = ISBNCover
+	api.value = isbn
+	return api
 }
 
-func (c *CoverAPI) OCLC(oclc string) *CoverAPI {
-	c.kind = OCLCCover
-	c.value = oclc
-	return c
+func (api *CoverAPI) OCLC(oclc string) *CoverAPI {
+	api.kind = OCLCCover
+	api.value = oclc
+	return api
 }
 
-func (c *CoverAPI) LCCN(lccn string) *CoverAPI {
-	c.kind = LCCNCover
-	c.value = lccn
-	return c
+func (api *CoverAPI) LCCN(lccn string) *CoverAPI {
+	api.kind = LCCNCover
+	api.value = lccn
+	return api
 }
 
-func (c *CoverAPI) OLID(olid string) *CoverAPI {
-	c.kind = OLIDCover
-	c.value = olid
-	return c
+func (api *CoverAPI) OLID(olid string) *CoverAPI {
+	api.kind = OLIDCover
+	api.value = olid
+	return api
 }
 
-func (c *CoverAPI) ID(id string) *CoverAPI {
-	c.kind = IDCover
-	c.value = id
-	return c
+func (api *CoverAPI) ID(id string) *CoverAPI {
+	api.kind = IDCover
+	api.value = id
+	return api
 }
 
-func (c *CoverAPI) Small() *CoverAPI {
-	c.size = CoverSmall
-	return c
+func (api *CoverAPI) Small() *CoverAPI {
+	api.size = CoverSmall
+	return api
 }
 
-func (c *CoverAPI) Medium() *CoverAPI {
-	c.size = CoverMedium
-	return c
+func (api *CoverAPI) Medium() *CoverAPI {
+	api.size = CoverMedium
+	return api
 }
 
-func (c *CoverAPI) Large() *CoverAPI {
-	c.size = CoverLarge
-	return c
+func (api *CoverAPI) Large() *CoverAPI {
+	api.size = CoverLarge
+	return api
 }
 
-func (c *CoverAPI) Get() (imgBytes []byte, mimeType string, err error) {
-	endpoint := path.Join(string(c.kind), c.value+"-"+string(c.size)) + ".jpg?default=false"
-	res, err := c.openlibraryClient.httpClient.R().Get(endpoint)
+func (api *CoverAPI) Get() (imgBytes []byte, mimeType string, err error) {
+	if api.value == "" {
+		return imgBytes, mimeType, errors.New("No value")
+	}
+	endpoint := path.Join("/b", string(api.kind), api.value+"-"+string(api.size)) + ".jpg?default=false"
+	res, err := api.openlibraryClient.httpClient.R().Get(endpoint)
 	if err != nil {
 		return
 	}

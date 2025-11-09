@@ -10,7 +10,7 @@ type WorksAPI struct {
 	key               string
 }
 
-type WorkResponse struct {
+type Works struct {
 	Key               string            `json:"key"`
 	Title             string            `json:"title"`
 	Subtitle          string            `json:"subtitle,omitempty"`
@@ -22,7 +22,7 @@ type WorkResponse struct {
 	LCClassifications []string          `json:"lc_classifications,omitempty"`
 	Subjects          []string          `json:"subjects,omitempty"`
 	FirstPublishDate  string            `json:"first_publish_date,omitempty"`
-	Description       string            `json:"description,omitempty"`
+	Description       *TextBlock        `json:"description,omitempty"`
 	Notes             string            `json:"notes,omitempty"`
 	Revision          int64             `json:"revision"`
 	LatestRevision    int64             `json:"latest_revision,omitempty"`
@@ -36,7 +36,7 @@ type WorkType struct {
 
 type AuthorRole struct {
 	Type   AuthorRoleType `json:"type"`
-	Author Author         `json:"author"`
+	Author AuthorWithKey  `json:"author"`
 	Role   *string        `json:"role,omitempty"`
 	As     *string        `json:"as,omitempty"`
 }
@@ -45,7 +45,7 @@ type AuthorRoleType struct {
 	Key string `json:"key"`
 }
 
-type Author struct {
+type AuthorWithKey struct {
 	Key string `json:"key"`
 }
 
@@ -108,7 +108,7 @@ func (c *Client) Works(key string) *WorksAPI {
 	return &api
 }
 
-func (api *WorksAPI) Get() (resp *WorkResponse, err error) {
+func (api *WorksAPI) Get() (resp *Works, err error) {
 	_, err = api.openlibraryClient.httpClient.R().
 		SetHeader("Accept", "application/json").
 		SetResult(&resp).

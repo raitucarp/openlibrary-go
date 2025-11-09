@@ -9,7 +9,7 @@ type Edition struct {
 	Title              string            `json:"title"`
 	Subtitle           *string           `json:"subtitle,omitempty"`
 	Type               EditionType       `json:"type"`
-	Authors            []Author          `json:"authors,omitempty"`
+	Authors            []AuthorWithKey   `json:"authors,omitempty"`
 	Works              []WorkReference   `json:"works"`
 	Identifiers        map[string]any    `json:"identifiers,omitempty"`
 	ISBN10             []string          `json:"isbn_10,omitempty"`

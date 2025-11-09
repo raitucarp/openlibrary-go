@@ -51,7 +51,6 @@ func TestSearch(t *testing.T) {
 	ratings, err := workAPI.Ratings()
 	bookshelves, err := workAPI.Bookshelves()
 
-	log.Println("works", editions)
 	log.Println("ratings", ratings)
 	log.Println("bookshelves", bookshelves)
 
