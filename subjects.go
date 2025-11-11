@@ -16,6 +16,12 @@ type SubjectsAPI struct {
 	offset            int
 }
 
+type KeyName struct {
+	Key   string `json:"key,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Count int    `json:"count,omitempty"`
+}
+
 type SubjectsResponse struct {
 	Key         string `json:"key,omitempty"`
 	Name        string `json:"name,omitempty"`
@@ -63,42 +69,15 @@ type SubjectsResponse struct {
 			Src                 string `json:"__src__,omitempty"`
 		} `json:"availability,omitempty"`
 	} `json:"works,omitempty"`
-	EbookCount int `json:"ebook_count,omitempty"`
-	Subjects   []struct {
-		Key   string `json:"key,omitempty"`
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"subjects,omitempty"`
-	Places []struct {
-		Key   string `json:"key,omitempty"`
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"places,omitempty"`
-	People []struct {
-		Key   string `json:"key,omitempty"`
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"people,omitempty"`
-	Times []struct {
-		Key   string `json:"key,omitempty"`
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"times,omitempty"`
-	Authors []struct {
-		Name  string `json:"name,omitempty"`
-		Key   string `json:"key,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"authors,omitempty"`
-	Publishers []struct {
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-		Key   string `json:"key,omitempty"`
-	} `json:"publishers,omitempty"`
-	Languages []struct {
-		Name  string `json:"name,omitempty"`
-		Count int    `json:"count,omitempty"`
-	} `json:"languages,omitempty"`
-	PublishingHistory [][]int `json:"publishing_history,omitempty"`
+	EbookCount        int       `json:"ebook_count,omitempty"`
+	Subjects          []KeyName `json:"subjects,omitempty"`
+	Places            []KeyName `json:"places,omitempty"`
+	People            []KeyName `json:"people,omitempty"`
+	Times             []KeyName `json:"times,omitempty"`
+	Authors           []KeyName `json:"authors,omitempty"`
+	Publishers        []KeyName `json:"publishers,omitempty"`
+	Languages         []KeyName `json:"languages,omitempty"`
+	PublishingHistory [][]int   `json:"publishing_history,omitempty"`
 }
 
 func (c *Client) Subjects(subject string) *SubjectsAPI {
