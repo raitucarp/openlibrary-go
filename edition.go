@@ -4,6 +4,88 @@ import (
 	"path"
 )
 
+type Identifiers struct {
+	Abaa                                        []string `json:"abaa,omitempty"`
+	DominicanInstituteForOrientalStudiesLibrary []string `json:"dominican_institute_for_oriental_studies_library,omitempty"`
+	AlibrisId                                   []string `json:"alibris_id,omitempty"`
+	Amazon                                      []string `json:"amazon,omitempty"`
+	AbwaBibliographicNumber                     []string `json:"abwa_bibliographic_number,omitempty"`
+	BetterWorldBooks                            []string `json:"better_world_books,omitempty"`
+	DepositoLegal                               []string `json:"depósito_legal,omitempty"`
+	BibliothequeNationaleDeFrance               []string `json:"bibliothèque_nationale_de_france,omitempty"`
+	Bibsys                                      []string `json:"bibsys,omitempty"`
+	Bhl                                         []string `json:"bhl,omitempty"`
+	Bookbrainz                                  []string `json:"bookbrainz,omitempty"`
+	Bcid                                        []string `json:"bcid,omitempty"`
+	BooklockerCom                               []string `json:"booklocker.com,omitempty"`
+	Bookmooch                                   []string `json:"bookmooch,omitempty"`
+	Bookwire                                    []string `json:"bookwire,omitempty"`
+	Booksforyou                                 []string `json:"booksforyou,omitempty"`
+	BostonPublicLibrary                         []string `json:"boston_public_library,omitempty"`
+	BritishLibrary                              []string `json:"british_library,omitempty"`
+	CornellUniversityOnlineLibrary              []string `json:"cornell_university_online_library,omitempty"`
+	CornellUniversityLibrary                    []string `json:"cornell_university_library,omitempty"`
+	CanadianNationalLibraryArchive              []string `json:"canadian_national_library_archive,omitempty"`
+	Choosebooks                                 []string `json:"choosebooks,omitempty"`
+	Dnb                                         []string `json:"dnb,omitempty"`
+	DigitalLibraryPomerania                     []string `json:"digital_library_pomerania,omitempty"`
+	Doi                                         []string `json:"doi,omitempty"`
+	Discovereads                                []string `json:"discovereads,omitempty"`
+	Freebase                                    []string `json:"freebase,omitempty"`
+	Folio                                       []string `json:"folio,omitempty"`
+	Goodreads                                   []string `json:"goodreads,omitempty"`
+	Google                                      []string `json:"google,omitempty"`
+	GrandComicsDatabase                         []string `json:"grand_comics_database,omitempty"`
+	HathiTrust                                  []string `json:"hathi_trust,omitempty"`
+	Harvard                                     []string `json:"harvard,omitempty"`
+	Ilmiolibro                                  []string `json:"ilmiolibro,omitempty"`
+	Inducks                                     []string `json:"inducks,omitempty"`
+	Ocaid                                       []string `json:"ocaid,omitempty"`
+	Isfdb                                       []string `json:"isfdb,omitempty"`
+	Etsc                                        []string `json:"etsc,omitempty"`
+	Isbn10                                      []string `json:"isbn_10,omitempty"`
+	Isbn13                                      []string `json:"isbn_13,omitempty"`
+	Issn                                        []string `json:"issn,omitempty"`
+	Istc                                        []string `json:"istc,omitempty"`
+	Lccn                                        []string `json:"lccn,omitempty"`
+	Librarything                                []string `json:"librarything,omitempty"`
+	Lulu                                        []string `json:"lulu,omitempty"`
+	Magcloud                                    []string `json:"magcloud,omitempty"`
+	Musicbrainz                                 []string `json:"musicbrainz,omitempty"`
+	Nla                                         []string `json:"nla,omitempty"`
+	Nbuv                                        []string `json:"nbuv,omitempty"`
+	Libris                                      []string `json:"libris,omitempty"`
+	OclcNumbers                                 []string `json:"oclc_numbers,omitempty"`
+	Overdrive                                   []string `json:"overdrive,omitempty"`
+	PaperbackSwap                               []string `json:"paperback_swap,omitempty"`
+	ProjectGutenberg                            []string `json:"project_gutenberg,omitempty"`
+	ProjectRuneberg                             []string `json:"project_runeberg,omitempty"`
+	Scribd                                      []string `json:"scribd,omitempty"`
+	OpacSbn                                     []string `json:"opac_sbn,omitempty"`
+	Shelfari                                    []string `json:"shelfari,omitempty"`
+	SmashwordsBookDownload                      []string `json:"smashwords_book_download,omitempty"`
+	StandardEbooks                              []string `json:"standard_ebooks,omitempty"`
+	Storygraph                                  []string `json:"storygraph,omitempty"`
+	Ulrls                                       []string `json:"ulrls,omitempty"`
+	WWNorton                                    []string `json:"w._w._norton,omitempty"`
+	ZdbId                                       []string `json:"zdb-id,omitempty"`
+	Fennica                                     []string `json:"fennica,omitempty"`
+	BayerischeStaatsbibliothek                  []string `json:"bayerische_staatsbibliothek,omitempty"`
+	AbebooksDe                                  []string `json:"abebooks.de,omitempty"`
+	DcBooks                                     []string `json:"dc_books,omitempty"`
+	Publishamerica                              []string `json:"publishamerica,omitempty"`
+	BritishNationalBibliography                 []string `json:"british_national_bibliography,omitempty"`
+	Wikidata                                    []string `json:"wikidata,omitempty"`
+	Librivox                                    []string `json:"librivox,omitempty"`
+	OpenAlex                                    []string `json:"open_alex,omitempty"`
+	Openstax                                    []string `json:"openstax,omitempty"`
+	OpenTextbookLibrary                         []string `json:"open_textbook_library,omitempty"`
+	Wikisource                                  []string `json:"wikisource,omitempty"`
+	Yakaboo                                     []string `json:"yakaboo,omitempty"`
+	Infosoup                                    []string `json:"infosoup,omitempty"`
+	UrnNbn                                      []string `json:"urn_nbn,omitempty"`
+}
+
 type Edition struct {
 	Key                string            `json:"key"`
 	Title              string            `json:"title"`
@@ -11,7 +93,7 @@ type Edition struct {
 	Type               EditionType       `json:"type"`
 	Authors            []AuthorWithKey   `json:"authors,omitempty"`
 	Works              []WorkReference   `json:"works"`
-	Identifiers        map[string]any    `json:"identifiers,omitempty"`
+	Identifiers        *Identifiers      `json:"identifiers,omitempty"`
 	ISBN10             []string          `json:"isbn_10,omitempty"`
 	ISBN13             []string          `json:"isbn_13,omitempty"`
 	LCCN               []string          `json:"lccn,omitempty"`
@@ -31,7 +113,7 @@ type Edition struct {
 	PhysicalDimensions string            `json:"physical_dimensions,omitempty"`
 	PhysicalFormat     string            `json:"physical_format,omitempty"`
 	CopyrightDate      string            `json:"copyright_date,omitempty"`
-	PublishCountry     string            `json:"publish_country,omitempty"` // Pattern: "^[a-z]{2,3}$"
+	PublishCountry     string            `json:"publish_country,omitempty"`
 	PublishDate        string            `json:"publish_date,omitempty"`
 	PublishPlaces      []string          `json:"publish_places,omitempty"`
 	Publishers         []string          `json:"publishers,omitempty"`
