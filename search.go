@@ -88,6 +88,7 @@ type SearchResult struct {
 	AlternativeTitle      []string    `json:"alternative_title,omitempty"`
 	AlternativeSubtitle   []string    `json:"alternative_subtitle,omitempty"`
 	CoverI                int         `json:"cover_i,omitempty"`
+	CoverEditionKey       string      `json:"cover_edition_key,omitempty"`
 	EbookAccess           EbookAccess `json:"ebook_access,omitempty"`
 	EditionCount          int         `json:"edition_count,omitempty"`
 	EditionKey            []string    `json:"edition_key,omitempty"`
@@ -96,7 +97,7 @@ type SearchResult struct {
 	PublishDate           []string    `json:"publish_date,omitempty"`
 	LCCN                  []string    `json:"lccn,omitempty"`
 	IA                    []string    `json:"ia,omitempty"`
-	Oclc                  []string    `json:"oclc,omitempty"`
+	OCLC                  []string    `json:"oclc,omitempty"`
 	ISBN                  []string    `json:"isbn,omitempty"`
 	Contributor           []string    `json:"contributor,omitempty"`
 	PublishPlace          []string    `json:"publish_place,omitempty"`
